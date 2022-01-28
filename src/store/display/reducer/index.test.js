@@ -1,5 +1,8 @@
 import displayReducer from '../reducer';
-import { appendToDisplayAction } from '../actions';
+import {
+    appendToDisplayAction,
+    undoLastInputAction
+} from '../actions';
 
 describe('displayReducer', () => {
     describe('appendToDisplay', () => {
@@ -29,4 +32,13 @@ describe('displayReducer', () => {
             }
         })
     });
+
+    describe('undoLastInput', () => {
+        it("should remove the last character at the end of the display text", () => {
+            const initiaState = { displayText: '1' };
+            expect(displayReducer(initiaState, undoLastInputAction()).displayText).toEqual('');
+            initiaState.displayText = '12';
+            expect(displayReducer(initiaState, undoLastInputAction()).displayText).toEqual('1');
+        })
+    })
 });

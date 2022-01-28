@@ -9,7 +9,7 @@ const initialState = {
 
 const displayReducer = (state = initialState, action) => {
     switch(action.type) {
-        case constants.APPEND_TO_DISPLAY:
+        case constants.APPEND_TO_DISPLAY: {
             const { displayText } = state;
             // Get the last character of the display text for regular
             // expression validation
@@ -26,8 +26,19 @@ const displayReducer = (state = initialState, action) => {
                 ...state,
                 displayText: `${state.displayText}${action.payload}`
             }
-        default:
+        }
+        case constants.UNDO_LAST_INPUT: {
+            const { displayText } = state
+            const newText = displayText.slice(0, displayText.length - 1);
+
+            return {
+                ...state,
+                displayText: newText
+            }
+        }
+        default: {
             return state;
+        }
     }
 }
 

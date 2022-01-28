@@ -4,3 +4,7 @@ export const appendToDisplayAction = char => ({
     type: constants.APPEND_TO_DISPLAY,
     payload: char
 });
+
+export const undoLastInputAction = char => ({
+    type: constants.UNDO_LAST_INPUT
+})
