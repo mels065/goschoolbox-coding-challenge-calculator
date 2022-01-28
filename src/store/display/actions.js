@@ -12,3 +12,7 @@ export const undoLastInputAction = char => ({
 export const clearDisplayAction = () => ({
     type: constants.CLEAR_DISPLAY
 });
+
+export const calculateAction = () => ({
+    type: constants.CALCULATE
+});
