@@ -7,4 +7,8 @@ export const appendToDisplayAction = char => ({
 
 export const undoLastInputAction = char => ({
     type: constants.UNDO_LAST_INPUT
-})
+});
+
+export const clearDisplayAction = () => ({
+    type: constants.CLEAR_DISPLAY
+});

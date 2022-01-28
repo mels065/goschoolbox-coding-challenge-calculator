@@ -25,7 +25,7 @@ const displayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 displayText: `${state.displayText}${action.payload}`
-            }
+            };
         }
         case constants.UNDO_LAST_INPUT: {
             const { displayText } = state
@@ -34,7 +34,13 @@ const displayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 displayText: newText
-            }
+            };
+        }
+        case constants.CLEAR_DISPLAY: {
+            return {
+                ...state,
+                displayText: ''
+            };
         }
         default: {
             return state;

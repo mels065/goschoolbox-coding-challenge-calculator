@@ -1,6 +1,7 @@
 import displayReducer from '../reducer';
 import {
     appendToDisplayAction,
+    clearDisplayAction,
     undoLastInputAction
 } from '../actions';
 
@@ -39,6 +40,13 @@ describe('displayReducer', () => {
             expect(displayReducer(initiaState, undoLastInputAction()).displayText).toEqual('');
             initiaState.displayText = '12';
             expect(displayReducer(initiaState, undoLastInputAction()).displayText).toEqual('1');
+        });
+    });
+
+    describe('clearDisplay', () => {
+        it("should replace display text with an empty string", () => {
+            const initialState = { displayText: '2 + 2' };
+            expect(displayReducer(initialState, clearDisplayAction()).displayText).toEqual('');
         })
     })
 });
