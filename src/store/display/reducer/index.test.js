@@ -11,10 +11,16 @@ describe('displayReducer', () => {
         it("should append to existing display", () => {
             expect(displayReducer(undefined, appendToDisplayAction('1')).displayInput)
                 .toEqual(["1"]);
-            const initialState = { displayInput: "1" };
+            const initialState = { displayInput: ['1'] };
             expect(displayReducer(initialState, appendToDisplayAction('+')).displayInput)
                 .toEqual(["1", "+"]);
         });
+
+        it("should be appended to last entry if previous and current entries are numbers", () => {
+            const initialState = { displayInput: ['1'] };
+            expect(displayReducer(initialState, appendToDisplayAction('2')).displayInput)
+                .toEqual(['12']);
+        })
 
         it("should not be able to append '*', '/', and '-' at the beginning of the expression", () => {
             expect(displayReducer(undefined, appendToDisplayAction('*')).displayInput).toEqual([]);
@@ -39,15 +45,20 @@ describe('displayReducer', () => {
         it("should remove the last input at the end of the display", () => {
             const initiaState = { displayInput: ['1'] };
             expect(displayReducer(initiaState, undoLastInputAction()).displayInput).toEqual([]);
-            initiaState.displayInput = ['1', '2'];
+            initiaState.displayInput = ['1', '+'];
             expect(displayReducer(initiaState, undoLastInputAction()).displayInput).toEqual(['1']);
         });
+
+        it("should remove the last character in a number greater than or equal to 10", () => {
+            const initialState = { displayInput: ['12'] };
+            expect(displayReducer(initialState, undoLastInputAction()).displayInput).toEqual(['1'])
+        })
     });
 
     describe('clearDisplay', () => {
         it("should replace display with an empty array", () => {
             const initialState = { displayInput: ['2', '+', '2'] };
             expect(displayReducer(initialState, clearDisplayAction()).displayInput).toEqual([]);
-        })
+        });
     });
 });
