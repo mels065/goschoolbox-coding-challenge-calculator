@@ -2,33 +2,36 @@
     grid-gap: 10px;
     display: grid;
     grid-template-areas:
-        "nums nums nums arith"
-        "nums nums nums arith"
-        "nums nums nums arith"
-        "zero destroy destroy arith"
-        ". . . arith"
-        ". . . func";
+        "vals1 vals1 vals1 arith"
+        "vals1 vals1 vals1 arith"
+        "vals1 vals1 vals1 arith"
+        "vals1 vals1 vals1 arith"
+        "vals2 . . arith"
+        ". destroy destroy func";
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     margin: 15px auto;
     width: 80%;
 }
 
-.num-btn-panel {
-    grid-area: nums;
+.val-btn-panel-1 {
+    grid-area: vals1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.zero-btn-panel {
-    grid-area: zero;
+.val-btn-panel-2 {
+    grid-area: vals2;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .arithmetic-btn-panel {
     grid-area: arith;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 5);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .destroy-btn-panel {
@@ -39,5 +42,4 @@
 
 .func-btn-panel {
     grid-area: func;
-    display: grid;
 }

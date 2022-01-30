@@ -8,16 +8,19 @@ import './style.css';
 function ButtonPanel() {
     return (
         <div className="btn-panel">
-            <div className="num-btn-panel">
+            <div className="val-btn-panel-1">
                 {
                     new Array(9).fill(null).map((__, i) => String(i+1))
                         .map(num => (
                             <InputButton key={`sym-${num}`} val={num} />
                         ))
                 }
-            </div>
-            <div className="zero-btn-panel">
                 <InputButton val={'0'} />
+                <InputButton val={'('} />
+                <InputButton val={')'} />
+            </div>
+            <div className="val-btn-panel-2">
+                <InputButton val={'.'} />
             </div>
             <div className="arithmetic-btn-panel">
                 {

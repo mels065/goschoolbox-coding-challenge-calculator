@@ -37,6 +37,10 @@ describe('<ButtonPanel />', () => {
         for (let num of nums) {
             expect(screen.getByText(num)).toBeInTheDocument();
         }
+        expect(screen.getByText('.')).toBeInTheDocument();
+        expect(screen.getByText('(')).toBeInTheDocument();
+        expect(screen.getByText(')')).toBeInTheDocument();
+
         for (let sym of arithmeticSymbols) {
             expect(screen.getByText(sym)).toBeInTheDocument();
         }
