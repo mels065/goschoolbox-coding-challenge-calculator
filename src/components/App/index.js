@@ -1,14 +1,16 @@
 import { Provider } from 'react-redux';
 
-import './style.css';
+import Calculator from '../modules/Calculator';
 
 import store from '../../store';
+
+import './style.css';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        Hello World
+        <Calculator />
       </div>
     </Provider>
   );
