@@ -117,4 +117,109 @@ describe('displayReducer', () => {
             expect(displayInput).toEqual([]);
         });
     });
+
+    describe('calculate', () => {
+        it("should return the same string if only number was entered in display", () => {
+            const initialState = { displayInput: ['1282022'] };
+            const { displayInput } = displayReducer(initialState, calculateAction());
+            expect(displayInput).toEqual(['1282022']);
+        });
+
+        it("should do basic arithmetic", () => {
+            const initialState = { displayInput: ['2', '+', '2'] };
+            const { displayInput: displayInput1 } = displayReducer(initialState, calculateAction());
+            expect(displayInput1).toEqual(['4']);
+
+            initialState.displayInput = ['1', '-', '4'];
+            const { displayInput: displayInput2 } = displayReducer(initialState, calculateAction());
+            expect(displayInput2).toEqual(['-3']);
+
+            initialState.displayInput = ['3', '*', '2'];
+            const { displayInput: displayInput3 } = displayReducer(initialState, calculateAction());
+            expect(displayInput3).toEqual(['6']);
+
+            initialState.displayInput = ['20', '/', '4'];
+            const { displayInput: displayInput4 } = displayReducer(initialState, calculateAction());
+            expect(displayInput4).toEqual(['5']);
+
+            initialState.displayInput = ['5', '^', '2'];
+            const { displayInput: displayInput5 } = displayReducer(initialState, calculateAction());
+            expect(displayInput5).toEqual(['25']);
+        });
+
+        it("should handle parenthesis", () => {
+            const initialState = { displayInput: ['5', '*', '(', '3', '+', '4', ')'] };
+            const { displayInput } = displayReducer(initialState, calculateAction());
+            expect(displayInput).toEqual(['35']);
+        });
+
+        it("should handle nested parenthesis", () => {
+            const initialState = { displayInput: ['5', '*', '(', '3', '+', '(', '20', '/', '(', '2', '+', '2', ')', ')', ')', '+', '4', '+', '3'] };
+            const { displayInput } = displayReducer(initialState, calculateAction());
+            expect(displayInput).toEqual(['47']);
+        });
+
+        it("should be able to handle decimal arithmetic", () => {
+            const initialState = { displayInput: ['1.1', '+', '1.3'] };
+            const { displayInput: displayInput1 } = displayReducer(initialState, calculateAction());
+            expect(displayInput1).toEqual(['2.4']);
+
+            initialState.displayInput = ['3.53', '-', '1.3'];
+            const { displayInput: displayInput2 } = displayReducer(initialState, calculateAction());
+            expect(displayInput2).toEqual(['2.23']);
+
+            initialState.displayInput = ['2.1', '*', '1.5'];
+            const { displayInput: displayInput3 } = displayReducer(initialState, calculateAction());
+            expect(displayInput3).toEqual(['3.15']);
+
+            initialState.displayInput = ['2.1', '/', '1.5'];
+            const { displayInput: displayInput4 } = displayReducer(initialState, calculateAction());
+            expect(displayInput4).toEqual(['1.4']);
+        });
+
+        it("should convert positives/negatives", () => {
+            const initialState = { displayInput: ['+', '+', '1'] };
+            const { displayInput: displayInput1 } = displayReducer(initialState, calculateAction());
+            expect(displayInput1).toEqual(['1']);
+            
+            initialState.displayInput = ['-', '+', '1']
+            const { displayInput: displayInput2 } = displayReducer(initialState, calculateAction());
+            expect(displayInput2).toEqual(['-1']);
+            
+            initialState.displayInput = ['+', '-', '1']
+            const { displayInput: displayInput3 } = displayReducer(initialState, calculateAction());
+            expect(displayInput3).toEqual(['-1']);
+            
+            initialState.displayInput = ['-', '-', '1']
+            const { displayInput: displayInput4 } = displayReducer(initialState, calculateAction());
+            expect(displayInput4).toEqual(['1']);
+        });
+
+        it("should do nothing if no numbers and just +/-", () => {
+            const initialState = { displayInput: ['+', '-'] };
+            const { displayInput } = displayReducer(initialState, calculateAction());
+            expect(displayInput).toEqual(['+', '-']);
+        });
+
+        it("should do nothing if an operation was not finished correctly", () => {
+            const initialState = { displayInput: ['1', '+', '2', '*'] };
+            const { displayInput } = displayReducer(initialState, calculateAction());
+            expect(displayInput).toEqual(['1', '+', '2', '*']);
+        })
+
+        it("should return 0 if no input is provided", () => {
+            const { displayInput } = displayReducer(undefined, calculateAction());
+            expect(displayInput).toEqual(['0']);
+        });
+
+        it("should obey order of operations", () => {
+            const initialState = { displayInput: ['(', '3', '*', '4', ')', '+', '(', '-', '10', '/', '2', ')', '^', '2', '-', '3'] };
+            const { displayInput: displayInput1 } = displayReducer(initialState, calculateAction());
+            expect(displayInput1).toEqual(['34']);
+
+            initialState.displayInput = ['(', '3', '*', '(', '1', '+', '3', ')', ')', '+', '(', '-', '10', '/', '2', ')', '^', '2', '-', '3'];
+            const { displayInput: displayInput2 } = displayReducer(initialState, calculateAction());
+            expect(displayInput2).toEqual(['34']);
+        });
+    });
 });

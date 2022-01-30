@@ -1,8 +1,9 @@
-import _, { last } from 'lodash';
+import _ from 'lodash';
 
 import constants from '../constants';
 import regexp from '../../../utils/regexp';
 import numbers from '../../../utils/numbers';
+import calc from '../../../utils/calc';
 
 const initialState = {
     displayInput: []
@@ -80,33 +81,26 @@ const displayReducer = (state = initialState, action) => {
         }
         case constants.CALCULATE: {
             const { displayInput } = state;
-            const newDisplayInput = [...displayInput];
-            while (newDisplayInput.length > 2) {
-                const operand1 = Number(newDisplayInput.shift());
-                const operator = newDisplayInput.shift();
-                const operand2 = Number(newDisplayInput.shift());
 
-                switch(operator) {
-                    case '+': {
-                        newDisplayInput.unshift(String(operand1 + operand2));
-                        break;
-                    }
-                    case '-': {
-                        newDisplayInput.unshift(String(operand1 - operand2));
-                        break;
-                    }
-                    case '*': {
-                        newDisplayInput.unshift(String(operand1 * operand2));
-                        break;
-                    }
-                    case '/': {
-                        newDisplayInput.unshift(String(operand1 / operand2));
-                        break;
-                    }
-                    default: {
-                        throw new Error("Unexpected operator");
-                    }
+            if (_.isEmpty(displayInput)) {
+                return {
+                    ...state,
+                    displayInput: ['0']
                 }
+            }
+
+            const calculationReturn = calc.calculate(displayInput);
+
+            let newDisplayInput;
+            if (!calculationReturn) {
+                newDisplayInput = [...displayInput];
+            } else {
+                newDisplayInput = calculationReturn.result;
+            }
+
+            return {
+                ...state,
+                displayInput: newDisplayInput
             }
         }
         default: {
