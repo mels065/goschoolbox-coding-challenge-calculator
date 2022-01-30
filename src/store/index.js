@@ -1,3 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-export default createStore();
+import displayReducer from './display/reducer';
+
+export default createStore(combineReducers({
+    display: displayReducer
+}));
