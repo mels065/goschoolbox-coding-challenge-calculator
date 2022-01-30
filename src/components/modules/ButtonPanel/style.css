@@ -1,0 +1,31 @@
+.btn-panel {
+    grid-gap: 15px;
+    display: grid;
+    grid-template-areas:
+        "nums nums nums arith"
+        "nums nums nums arith"
+        "nums nums nums arith"
+        "zero . . arith"
+        ". . . arith";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    margin: 15px auto;
+    width: 80%;
+}
+
+.num-btn-panel {
+    grid-area: nums;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.zero-btn-panel {
+    grid-area: zero;
+}
+
+.arithmetic-btn-panel {
+    grid-area: arith;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr, 5);
+}
