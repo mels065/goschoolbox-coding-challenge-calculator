@@ -1,4 +1,5 @@
 const regexp = {
+    NUMBERS: /\d+/,
     ARITHMETIC_SYMBOLS: /[+\-*/^]/,
     PLUS_MINUS_SYMBOLS: /[+-]/,
     LONE_PLUSES_MINUSES: /^[+-]$/,
@@ -12,7 +13,8 @@ const regexp = {
     IS_DECIMAL_NUM: /\d*\.(\d+)/,
     EXPONENT_OPERATION: /(\d+)(\^)(\d+)/,
     MULT_DIV_OPERATION: /(\d+)([*/])(\d+)/,
-    ADD_SUBTR_OPERATION: /(\d+)([+-])(\d+)/
+    ADD_SUBTR_OPERATION: /(\d+)([+-])(\d+)/,
+    OPEN_PARENTHESIS: /\(/
 }
 
 export default regexp;

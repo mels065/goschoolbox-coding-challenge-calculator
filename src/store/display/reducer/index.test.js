@@ -64,6 +64,12 @@ describe('displayReducer', () => {
             }
         })
 
+        it("should prepend a '*' before an input of an open parenthesis if a number preceded it", () => {
+            const initialState = { displayInput: ['3'] };
+            const { displayInput }= displayReducer(initialState, appendToDisplayAction('('));
+            expect(displayInput).toEqual(['3', '*', '(']);
+        })
+
         it("should not be able to append '*', '/', and '^' at the beginning of the expression", () => {
             const operators = ['*', '/', '^'];
             for (let operator of operators) {

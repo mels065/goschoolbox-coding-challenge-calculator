@@ -46,6 +46,12 @@ const displayReducer = (state = initialState, action) => {
                     ...displayInput,
                     `0${currentInput}`
                 ];
+            } else if (regexp.NUMBERS.test(lastInput) && regexp.OPEN_PARENTHESIS.test(currentInput)) {
+                newDisplayInput = [
+                    ...displayInput,
+                    '*',
+                    currentInput
+                ]
             } else {
                 newDisplayInput = [...displayInput, currentInput];
             }
