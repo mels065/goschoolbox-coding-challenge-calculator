@@ -109,10 +109,14 @@ describe('displayReducer', () => {
             expect(displayInput).toEqual(['1'])
         });
 
-        it("should remove a decimal point in last entry if it's the last character", () => {
+        it("should remove the last character in a decimal number", () => {
             const initialState = { displayInput: ['1.'] };
-            const { displayInput } = displayReducer(initialState, undoLastInputAction());
-            expect(displayInput).toEqual(['1']);
+            const { displayInput: displayInput1 } = displayReducer(initialState, undoLastInputAction());
+            expect(displayInput1).toEqual(['1']);
+
+            initialState.displayInput = ['2.5'];
+            const { displayInput: displayInput2 } = displayReducer(initialState, undoLastInputAction());
+            expect(displayInput2).toEqual(['2.']);
         })
     });
 
