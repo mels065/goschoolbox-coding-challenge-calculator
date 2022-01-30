@@ -1,19 +1,19 @@
-import { useStore } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { appendToDisplayAction } from '../../../store/display/actions';
 
 import './style.css';
 
 function InputButton({ val }) {
-    const store = useStore();
+    const dispatch = useDispatch();
 
     function clickHandler(event) {
         const input = event.target.value;
-        store.dispatch(appendToDisplayAction(input));
+        dispatch(appendToDisplayAction(input));
     }
 
     return (
-        <button value={val} onClick={clickHandler}>
+        <button className="btn input-btn" value={val} onClick={clickHandler}>
             {val}
         </button>
     )
