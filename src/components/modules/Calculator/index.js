@@ -1,9 +1,11 @@
 import './style.css';
 
+import CalculatorDisplay from '../CalculatorDisplay';
+
 function Calculator() {
     return (
         <div className="calculator">
-            {/* CalculatorDisplay and CalculatorButtons go here */}
+            <CalculatorDisplay />
         </div>
     );
 }
