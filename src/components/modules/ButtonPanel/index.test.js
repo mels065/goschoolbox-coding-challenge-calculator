@@ -14,6 +14,12 @@ jest.mock('../UndoButton', () => ({
         return <button>←</button>
     }
 }));
+jest.mock('../ClearButton', () => ({
+    __esModule: true,
+    default: ({ val }) => {
+        return <button>C</button>
+    }
+}));
 
 describe('<ButtonPanel />', () => {
     it('should display the input buttons', () => {
@@ -33,5 +39,10 @@ describe('<ButtonPanel />', () => {
     it('should display the undo button', () => {
         render(<ButtonPanel />);
         expect(screen.getByText('←')).toBeInTheDocument();
+    });
+
+    it('should display the clear button', () => {
+        render(<ButtonPanel />);
+        expect(screen.getByText('C')).toBeInTheDocument();
     })
 });

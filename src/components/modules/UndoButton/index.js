@@ -12,7 +12,7 @@ function UndoButton() {
     }
 
     return (
-        <button className="btn destroy-btn" onClick={clickHandler}>&larr;</button>
+        <button className="btn destroy-btn undo-btn" onClick={clickHandler}>&larr;</button>
     )
 }
 
