@@ -1,6 +1,7 @@
 import InputButton from '../InputButton';
 import UndoButton from '../UndoButton';
 import ClearButton from '../ClearButton';
+import CalculateButton from '../CalculateButton';
 
 import './style.css';
 
@@ -28,6 +29,9 @@ function ButtonPanel() {
             <div className="destroy-btn-panel">
                 <UndoButton />
                 <ClearButton />
+            </div>
+            <div className="func-btn-panel">
+                <CalculateButton />
             </div>
         </div>
     );

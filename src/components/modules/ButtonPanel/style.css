@@ -1,12 +1,13 @@
 .btn-panel {
-    grid-gap: 15px;
+    grid-gap: 10px;
     display: grid;
     grid-template-areas:
         "nums nums nums arith"
         "nums nums nums arith"
         "nums nums nums arith"
         "zero destroy destroy arith"
-        ". . . arith";
+        ". . . arith"
+        ". . . func";
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     margin: 15px auto;
@@ -34,4 +35,9 @@
     grid-area: destroy;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.func-btn-panel {
+    grid-area: func;
+    display: grid;
 }

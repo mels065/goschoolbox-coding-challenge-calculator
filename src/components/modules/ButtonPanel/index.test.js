@@ -20,6 +20,12 @@ jest.mock('../ClearButton', () => ({
         return <button>C</button>
     }
 }));
+jest.mock('../CalculateButton', () => ({
+    __esModule: true,
+    default: ({ val }) => {
+        return <button>=</button>
+    }
+}));
 
 describe('<ButtonPanel />', () => {
     it('should display the input buttons', () => {
@@ -44,5 +50,10 @@ describe('<ButtonPanel />', () => {
     it('should display the clear button', () => {
         render(<ButtonPanel />);
         expect(screen.getByText('C')).toBeInTheDocument();
-    })
+    });
+
+    it('should display the calculate button', () => {
+        render(<ButtonPanel />);
+        expect(screen.getByText('=')).toBeInTheDocument();
+    });
 });
