@@ -12,3 +12,8 @@
 .btn:hover {
   cursor: pointer;
 }
+
+.destroy-btn {
+  background: red;
+  color: white;
+}

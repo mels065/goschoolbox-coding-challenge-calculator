@@ -8,6 +8,12 @@ jest.mock('../InputButton', () => ({
         return <button>{val}</button>
     }
 }));
+jest.mock('../UndoButton', () => ({
+    __esModule: true,
+    default: ({ val }) => {
+        return <button>←</button>
+    }
+}));
 
 describe('<ButtonPanel />', () => {
     it('should display the input buttons', () => {
@@ -22,5 +28,10 @@ describe('<ButtonPanel />', () => {
         for (let sym of arithmeticSymbols) {
             expect(screen.getByText(sym)).toBeInTheDocument();
         }
+    });
+
+    it('should display the undo button', () => {
+        render(<ButtonPanel />);
+        expect(screen.getByText('←')).toBeInTheDocument();
     })
 });

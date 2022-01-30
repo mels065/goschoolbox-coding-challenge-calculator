@@ -1,4 +1,5 @@
 import InputButton from '../InputButton';
+import UndoButton from '../UndoButton';
 
 import './style.css';
 
@@ -22,6 +23,9 @@ function ButtonPanel() {
                         <InputButton key={`sym-${sym}`} val={sym} />
                     ))
                 }
+            </div>
+            <div className="destroy-btn-panel">
+                <UndoButton />
             </div>
         </div>
     );
