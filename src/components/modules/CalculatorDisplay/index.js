@@ -1,10 +1,9 @@
-import { useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './style.css';
 
 function CalculatorDisplay() {
-    const store = useStore();
-    const { display: { displayInput } } = store.getState();
+    const displayInput = useSelector(state => state.display.displayInput);
     return (
         <div className="calculator-display">
             {displayInput.join('')}
