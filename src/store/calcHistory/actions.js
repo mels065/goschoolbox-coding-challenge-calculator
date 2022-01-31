@@ -1,3 +1,4 @@
+import { constant } from 'lodash';
 import constants from './constants';
 
 export const retrieveCalcHistoryAction = () => ({
@@ -7,4 +8,8 @@ export const retrieveCalcHistoryAction = () => ({
 export const addEntryAction = entry => ({
     type: constants.ADD_ENTRY,
     payload: entry
+});
+
+export const toggleHistoryModalAction = () => ({
+    type: constants.TOGGLE_HISTORY_MODAL
 });

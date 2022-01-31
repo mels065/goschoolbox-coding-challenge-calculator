@@ -1,6 +1,7 @@
 const constants = {
     RETRIEVE_CALC_HISTORY: 'RETRIEVE_CALC_HISTORY',
-    ADD_ENTRY: 'ADD_ENTRY'
+    ADD_ENTRY: 'ADD_ENTRY',
+    TOGGLE_HISTORY_MODAL: 'TOGGLE_HISTORY_MODAL'
 }
 
 export default constants;

@@ -1,7 +1,8 @@
 import constants from '../constants';
 
 const initialState = {
-    currentCalcHistory: []
+    currentCalcHistory: [],
+    showHistoryModal: false
 };
 
 const calcHistoryReducer = (state=initialState, action) => {
@@ -33,6 +34,12 @@ const calcHistoryReducer = (state=initialState, action) => {
             return {
                 ...state,
                 currentCalcHistory: newCalcHistory
+            }
+        }
+        case constants.TOGGLE_HISTORY_MODAL: {
+            return {
+                ...state,
+                showHistoryModal: !state.showHistoryModal
             }
         }
         default: {

@@ -2,7 +2,8 @@ import calcHistoryReducer from './index';
 
 import {
     retrieveCalcHistoryAction,
-    addEntryAction
+    addEntryAction,
+    toggleHistoryModalAction
 } from '../actions';
 
 describe("calcHistoryReducer", () => {
@@ -65,5 +66,16 @@ describe("calcHistoryReducer", () => {
             calcHistoryReducer(undefined, addEntryAction(entry));
             expect(localStorage.setItem).toBeCalledWith('calcHistory', [entry]);
         });
+    });
+
+    describe("toggleHistoryModal action" , () => {
+        it("should toggle on and off", () => {
+            const { showHistoryModal: showHistoryModal1 } = calcHistoryReducer(undefined, toggleHistoryModalAction());
+            expect(showHistoryModal1).toEqual(true);
+
+            const initialState = { showHistoryModal: true };
+            const { showHistoryModal: showHistoryModal2 } = calcHistoryReducer(initialState, toggleHistoryModalAction());
+            expect(showHistoryModal2).toEqual(false);
+        })
     });
 }); 
