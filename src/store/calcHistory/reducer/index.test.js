@@ -20,13 +20,13 @@ describe("calcHistoryReducer", () => {
         });
 
         it("should return the calc history array if in local storage", () => {
-            const currentCalcHistoryLocalStorage = [
+            const currentCalcHistoryLocalStorage = JSON.stringify([
                 ['1', '+', '1'],
                 ['7', '*', '8', '+', '3']
-            ]
+            ])
             Storage.prototype.getItem = () => currentCalcHistoryLocalStorage;
             const { currentCalcHistory } = calcHistoryReducer(undefined, retrieveCalcHistoryAction());
-            expect(currentCalcHistory).toEqual(currentCalcHistoryLocalStorage);
+            expect(currentCalcHistory).toEqual(JSON.parse(currentCalcHistoryLocalStorage));
         });
     });
 
@@ -64,7 +64,7 @@ describe("calcHistoryReducer", () => {
             Storage.prototype.setItem = jest.fn();
             const entry = ['2', '+', '3'];
             calcHistoryReducer(undefined, addEntryAction(entry));
-            expect(localStorage.setItem).toBeCalledWith('calcHistory', [entry]);
+            expect(localStorage.setItem).toBeCalledWith('calcHistory', JSON.stringify([entry]));
         });
     });
 

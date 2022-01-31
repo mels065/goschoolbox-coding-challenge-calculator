@@ -8,13 +8,14 @@ const initialState = {
 const calcHistoryReducer = (state=initialState, action) => {
     switch(action.type) {
         case constants.RETRIEVE_CALC_HISTORY: {
-            const currentCalcHistoryLocalStorage = localStorage.getItem('calcHistory');
+            let currentCalcHistoryLocalStorage = localStorage.getItem('calcHistory');
             if (!currentCalcHistoryLocalStorage) {
                 return {
                     ...state,
                     currentCalcHistory: []
                 };
             }
+            currentCalcHistoryLocalStorage = JSON.parse(currentCalcHistoryLocalStorage);
             return {
                 ...state,
                 currentCalcHistory: currentCalcHistoryLocalStorage
@@ -30,7 +31,7 @@ const calcHistoryReducer = (state=initialState, action) => {
                 newCalcHistory = newCalcHistory.slice(1);
             }
 
-            localStorage.setItem('calcHistory', newCalcHistory);
+            localStorage.setItem('calcHistory', JSON.stringify(newCalcHistory));
             return {
                 ...state,
                 currentCalcHistory: newCalcHistory
