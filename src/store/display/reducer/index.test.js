@@ -185,6 +185,22 @@ describe('displayReducer', () => {
             initialState.displayInput = ['2.1', '/', '1.5'];
             const { displayInput: displayInput4 } = displayReducer(initialState, calculateAction());
             expect(displayInput4).toEqual(['1.4']);
+
+            initialState.displayInput = ['1.5', '+', '3'];
+            const { displayInput: displayInput5 } = displayReducer(initialState, calculateAction());
+            expect(displayInput5).toEqual(['4.5']);
+
+            initialState.displayInput = ['4', '-', '1.7'];
+            const { displayInput: displayInput6 } = displayReducer(initialState, calculateAction());
+            expect(displayInput6).toEqual(['2.3']);
+
+            initialState.displayInput = ['2.8', '*', '2'];
+            const { displayInput: displayInput7 } = displayReducer(initialState, calculateAction());
+            expect(displayInput7).toEqual(['5.6']);
+
+            initialState.displayInput = ['2.5', '/', '2'];
+            const { displayInput: displayInput8 } = displayReducer(initialState, calculateAction());
+            expect(displayInput8).toEqual(['1.25']);
         });
 
         it("should convert positives/negatives", () => {
