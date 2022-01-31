@@ -1,4 +1,3 @@
-import { constant } from 'lodash';
 import constants from './constants';
 
 export const retrieveCalcHistoryAction = () => ({
