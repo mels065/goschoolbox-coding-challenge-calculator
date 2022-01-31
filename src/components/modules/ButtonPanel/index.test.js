@@ -26,6 +26,12 @@ jest.mock('../CalculateButton', () => ({
         return <button>=</button>
     }
 }));
+jest.mock('../OpenHistoryButton', () => ({
+    __esModule: true,
+    default: ({ val }) => {
+        return <button>Hist</button>
+    }
+}));
 
 describe('<ButtonPanel />', () => {
     it('should display the input buttons', () => {
@@ -60,4 +66,9 @@ describe('<ButtonPanel />', () => {
         render(<ButtonPanel />);
         expect(screen.getByText('=')).toBeInTheDocument();
     });
+
+    it('should display the open history button', () => {
+        render(<ButtonPanel />);
+        expect(screen.getByText('Hist')).toBeInTheDocument();
+    })
 });

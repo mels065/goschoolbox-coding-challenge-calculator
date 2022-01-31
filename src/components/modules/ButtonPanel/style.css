@@ -6,8 +6,8 @@
         "vals1 vals1 vals1 arith"
         "vals1 vals1 vals1 arith"
         "vals1 vals1 vals1 arith"
-        "vals2 . . arith"
-        ". destroy destroy func";
+        "vals2 destroy destroy arith"
+        ". . func func";
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
     margin: 15px auto;
@@ -42,4 +42,6 @@
 
 .func-btn-panel {
     grid-area: func;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }

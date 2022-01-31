@@ -2,6 +2,7 @@ import InputButton from '../InputButton';
 import UndoButton from '../UndoButton';
 import ClearButton from '../ClearButton';
 import CalculateButton from '../CalculateButton';
+import OpenHistoryButton from '../OpenHistoryButton';
 
 import './style.css';
 
@@ -34,6 +35,7 @@ function ButtonPanel() {
                 <ClearButton />
             </div>
             <div className="func-btn-panel">
+                <OpenHistoryButton />
                 <CalculateButton />
             </div>
         </div>
