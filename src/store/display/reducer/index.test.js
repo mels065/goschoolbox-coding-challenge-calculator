@@ -207,6 +207,10 @@ describe('displayReducer', () => {
             initialState.displayInput = ['2.5', '/', '2'];
             const { displayInput: displayInput8 } = displayReducer(initialState, calculateAction());
             expect(displayInput8).toEqual(['1.25']);
+
+            initialState.displayInput = ['1.6666666666666667', '*', '3'];
+            const { displayInput: displayInput9 } = displayReducer(initialState, calculateAction());
+            expect(displayInput9).toEqual(['5']);
         });
 
         it("should convert positives/negatives", () => {

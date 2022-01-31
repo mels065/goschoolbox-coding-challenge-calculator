@@ -128,8 +128,8 @@ const performDecimalMath = (operand1, operator, operand2) => {
         const numOfFractionalParts1 = operand1.match(regexp.IS_DECIMAL_NUM);
         const numOfFractionalParts2 = operand2.match(regexp.IS_DECIMAL_NUM);
 
-        const numOfFractionalPartsSize1 = numOfFractionalParts1 ? numOfFractionalParts1[1] : 0;
-        const numOfFractionalPartsSize2 = numOfFractionalParts2 ? numOfFractionalParts2[1] : 0;
+        const numOfFractionalPartsSize1 = numOfFractionalParts1 ? numOfFractionalParts1[1].length : 0;
+        const numOfFractionalPartsSize2 = numOfFractionalParts2 ? numOfFractionalParts2[1].length : 0;
         // Get this value by taking 10 to the power of the maximum between the sizes of the different fractional parts
         maxDecimalPlaceCapacity = Math.pow(
             10,
