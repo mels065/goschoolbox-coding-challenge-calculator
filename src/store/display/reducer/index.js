@@ -58,7 +58,15 @@ const displayReducer = (state = initialState, action) => {
                     ...displayInput,
                     '*',
                     currentInput
-                ]
+                ];
+            } else if (regexp.CLOSED_PARENTHESIS.test(lastInput) && regexp.NUMBERS.test(currentInput)) {
+                // If the last input was a closed parenthesis, and the current input is a number, prepend a mulitplication symbol as
+                // an element in the current input before the closed parenthesis
+                newDisplayInput = [
+                    ...displayInput,
+                    '*',
+                    currentInput
+                ];
             } else {
                 // Any other case, just append the current input to the display input array
                 newDisplayInput = [...displayInput, currentInput];

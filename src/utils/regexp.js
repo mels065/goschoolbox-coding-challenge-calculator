@@ -14,7 +14,8 @@ const regexp = {
     EXPONENT_OPERATION: /(\d+)(\^)(\d+)/,
     MULT_DIV_OPERATION: /(\d+)([*/])(\d+)/,
     ADD_SUBTR_OPERATION: /(\d+)([+-])(\d+)/,
-    OPEN_PARENTHESIS: /\(/
+    OPEN_PARENTHESIS: /\(/,
+    CLOSED_PARENTHESIS: /\)/
 }
 
 export default regexp;

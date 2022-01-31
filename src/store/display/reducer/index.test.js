@@ -68,7 +68,13 @@ describe('displayReducer', () => {
             const initialState = { displayInput: ['3'] };
             const { displayInput }= displayReducer(initialState, appendToDisplayAction('('));
             expect(displayInput).toEqual(['3', '*', '(']);
-        })
+        });
+
+        it("should prepend a '*' before an input of a number if a closing parenthesis preceded it", () => {
+            const initialState = { displayInput: ['(', '3', '+', '2', ')'] };
+            const { displayInput }= displayReducer(initialState, appendToDisplayAction('4'));
+            expect(displayInput).toEqual(['(', '3', '+', '2', ')', '*', '4']);
+        });
 
         it("should not be able to append '*', '/', and '^' at the beginning of the expression", () => {
             const operators = ['*', '/', '^'];
