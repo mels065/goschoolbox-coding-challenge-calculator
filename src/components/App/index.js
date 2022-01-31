@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 
 import Calculator from '../modules/Calculator';
+import CalcHistoryModal from '../modules/CalcHistoryModal';
 
 import store from '../../store';
 
@@ -11,6 +12,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Calculator />
+        <CalcHistoryModal />
       </div>
     </Provider>
   );

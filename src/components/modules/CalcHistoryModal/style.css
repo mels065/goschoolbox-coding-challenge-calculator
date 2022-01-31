@@ -1,0 +1,43 @@
+.calc-history-modal {
+    animation-name: slidein;
+    animation-duration: 0.5s;
+    position: absolute;
+    background: #222;
+    color: #eee;
+    top: 20px;
+    left: 50vw;
+    margin: 0 0 0 -200px;
+    height: 95vh;
+    opacity: 0.9;
+    padding: 20px;
+    width: 400px;
+}
+
+.calc-history-modal header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-close-btn {
+    cursor: pointer;
+}
+
+.calc-history-entry {
+    list-style: circle;
+}
+
+.no-history-msg {
+    text-align: center;
+}
+
+@keyframes slidein {
+    from {
+        top: 100px;
+        opacity: 0;
+    }
+
+    to {
+        top: 20px;
+        opacity: 0.9;
+    }
+}

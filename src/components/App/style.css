@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+
 .App {
+  font-family: 'PT Mono', monospace;
   padding: 20px;
 }
 
