@@ -1,7 +1,8 @@
 import calcHistoryReducer from './index';
 
 import {
-    retrieveCalcHistoryAction
+    retrieveCalcHistoryAction,
+    addEntryAction
 } from '../actions';
 
 describe("calcHistoryReducer", () => {
@@ -27,4 +28,42 @@ describe("calcHistoryReducer", () => {
             expect(currentCalcHistory).toEqual(currentCalcHistoryLocalStorage);
         });
     });
-});
+
+    describe('addEntry action' , () => {
+        it("should add a new entry to the calculator history", () => {
+            Storage.prototype.setItem = jest.fn();
+            const entry = ['1', '+', '2'];
+            const { currentCalcHistory } = calcHistoryReducer(undefined, addEntryAction(entry));
+            expect(currentCalcHistory).toEqual([entry])
+        });
+
+        it("should remove older entries if there are 10 or more in the history", () => {
+            Storage.prototype.setItem = jest.fn();
+            const entry = ['5', '*', '6'];
+            const initialState = { currentCalcHistory: [
+                ['1', '+', '2'],
+                ['3', '*', '2'],
+                ['16', '/', '2'],
+                ['15', '-', '2'],
+                ['140', '^', '2'],
+                ['1', '+', '9'],
+                ['4', '-', '20'],
+                ['19', '*', '17'],
+                ['56', '+', '27'],
+                ['1', '/', '28'],
+            ]};
+            const { currentCalcHistory } = calcHistoryReducer(initialState, addEntryAction(entry));
+            expect(currentCalcHistory).toEqual([
+                ...initialState.currentCalcHistory.slice(1),
+                entry
+            ]);
+        });
+
+        it("should set the entry to the local storage", () => {
+            Storage.prototype.setItem = jest.fn();
+            const entry = ['2', '+', '3'];
+            calcHistoryReducer(undefined, addEntryAction(entry));
+            expect(localStorage.setItem).toBeCalledWith('calcHistory', [entry]);
+        });
+    });
+}); 

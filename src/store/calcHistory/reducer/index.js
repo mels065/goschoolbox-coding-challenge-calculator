@@ -19,6 +19,22 @@ const calcHistoryReducer = (state=initialState, action) => {
                 currentCalcHistory: currentCalcHistoryLocalStorage
             }
         }
+        case constants.ADD_ENTRY: {
+            let newCalcHistory = [
+                ...state.currentCalcHistory,
+                action.payload
+            ];
+
+            if (newCalcHistory.length > 10) {
+                newCalcHistory = newCalcHistory.slice(1);
+            }
+
+            localStorage.setItem('calcHistory', newCalcHistory);
+            return {
+                ...state,
+                currentCalcHistory: newCalcHistory
+            }
+        }
         default: {
             return state;
         }
