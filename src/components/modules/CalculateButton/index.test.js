@@ -1,9 +1,6 @@
 import reactRedux from 'react-redux';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { calculateAction } from '../../../store/display/actions';
-import { addEntryAction } from '../../../store/calcHistory/actions'
-
 import CalculateButton from './index';
 
 jest.mock('react-redux', () => jest.fn());

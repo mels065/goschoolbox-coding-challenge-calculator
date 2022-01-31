@@ -1,20 +1,25 @@
-import { Provider } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Calculator from '../modules/Calculator';
 import CalcHistoryModal from '../modules/CalcHistoryModal';
 
-import store from '../../store';
+import { retrieveCalcHistoryAction } from '../../store/calcHistory/actions';
 
 import './style.css';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(retrieveCalcHistoryAction());
+  }, [dispatch]);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Calculator />
-        <CalcHistoryModal />
-      </div>
-    </Provider>
+    <div className="App">
+      <Calculator />
+      <CalcHistoryModal />
+    </div>
   );
 }
 
